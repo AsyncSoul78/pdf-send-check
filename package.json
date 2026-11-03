@@ -1,0 +1,12 @@
+{
+  "name": "pdf-send-check",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "test": "node --test test/send-check.test.js",
+    "check": "node scripts/pdf-send-check.js",
+    "check:strict": "node scripts/pdf-send-check.js --strict"
+  }
+}

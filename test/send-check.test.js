@@ -1,6 +1,8 @@
 'use strict';
 const test = require('node:test');
 const assert = require('node:assert');
+const fs = require('fs');
+const path = require('path');
 const zlib = require('zlib');
 const { check, format, readString } = require('../scripts/pdf-send-check.js');
 
@@ -14,6 +16,14 @@ function pdf(objects, trailer, extra = '') {
 
 const page = (annots = '') => `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792]${annots} >>`;
 const base = ['<< /Type /Catalog /Pages 2 0 R >>', '<< /Type /Pages /Kids [3 0 R] /Count 1 >>', page()];
+
+test('the highlighted flyer from the README is a single save with no annotations', () => {
+  const file = fs.readFileSync(path.join(__dirname, '..', 'examples', 'bake-sale-highlighted.pdf'));
+  const r = check(file);
+  assert.strictEqual(r.pages, 1);
+  assert.strictEqual(r.saves, 1);
+  assert.deepStrictEqual(r.notes, []);
+});
 
 test('clean one-page file has nothing to flag', () => {
   const r = check(pdf(base, '/Root 1 0 R'));

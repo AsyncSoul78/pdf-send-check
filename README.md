@@ -47,6 +47,27 @@ contract.pdf: PDF 1.7, 2 pages, saved 2 times
 
 ![Signing the permission slip in the browser](screenshot.png)
 
+A longer contract is a different job, with initials on every page and a date next to the last signature: [Sign a PDF agreement](https://webtoolmanuals.wordpress.com/2026/11/04/sign-a-pdf-agreement-initials-on-every-page-signature-and-date-on-the-last-one/) walks through it. Run the check on the result the same way.
+
+## Example: a flyer marked with a highlighter
+
+The title of a bake sale flyer was highlighted in orange, the file was saved, and the saved copy is in `examples/bake-sale-highlighted.pdf`:
+
+```
+$ node scripts/pdf-send-check.js examples/bake-sale-highlighted.pdf
+bake-sale-highlighted.pdf: PDF 1.7, 1 page, saved 1 time
+  annotations: none
+  form fields: 0
+  document info: Title, Creator, Producer, CreationDate, ModDate
+    Title: Spring Bake Sale
+  attachments: 0, scripts: no, encrypted: no
+  nothing to flag
+```
+
+The report only says what is not there: no annotation and no second save. To be sure the mark itself survived, open the same file in a PDF viewer. The stripe is there under the title, so it became part of the page:
+
+![The saved copy in a PDF viewer, with the highlighted title](screenshot-viewer.png)
+
 ## Example: a Word file turned into a PDF
 
 ```
@@ -85,8 +106,8 @@ We maintain these tools. They cover the steps around the check: read the file, s
 | Task | Tool | Note for the check |
 |---|---|---|
 | Sign a form | [Sign PDF](https://toolster.net/sign_pdf) | The example above. The pen signature went into the page itself. |
-| Draw, underline, add notes | [Draw on PDF](https://toolster.net/draw_on_pdf) | Pen and highlighter marks. Run the check on the saved copy to see how they were stored. |
-| Look through a file before sending | [PDF viewer](https://toolster.net/pdf_viewer) | Shows bookmarks and attachments too, so you can see what the script reports. |
+| Draw, underline, add notes | [Draw on PDF](https://toolster.net/draw_on_pdf) | The flyer example. The highlighter stripe went into the page, not into an annotation. |
+| Look through a file before sending | [PDF viewer](https://toolster.net/pdf_viewer) | Confirms the marks are there. Shows bookmarks and attachments too, so you can see what the script reports. |
 | Edit the text | [PDF to Word](https://toolster.net/pdf_to_word) | Returns an editable DOCX. Clear the author field there if needed. |
 | Make a PDF from a document | [Word to PDF](https://toolster.net/word_to_pdf) | The "Garden plan" example. Title and author come from the Word file. |
 | Read a long book | [PDF book reader](https://toolster.net/pdf_book_reader) | One page or two-page spreads, trims white margins of scans. |
@@ -98,6 +119,6 @@ Russian and Spanish versions of the site: [ru.toolster.net](https://ru.toolster.
 
 ## Video
 
-Video tutorial with five of these tools, including signing the permission slip from the example: [5 free PDF tools](https://youtu.be/PTGzzBIFT1o).
+Video tutorial with five of these tools, including signing the permission slip from the example: [5 free PDF tools](https://youtu.be/PTGzzBIFT1o). The same flyer gets its highlighter stripe [at 0:24](https://youtu.be/PTGzzBIFT1o?t=24).
 
 The site source code is not included. This repository contains only the independent check script, its tests and the checklist.
